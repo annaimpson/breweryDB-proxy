@@ -22,6 +22,8 @@ app.get('/breweries', function(req, res){ // listens for request on /api route
   request('https://api.brewerydb.com/v2/breweries&hasImages=Y&key=9b561e70ba317f8d99aaa277053fe0fd', function (error, response, body) { // api url
     if (!error && response.statusCode === 200) {
       res.send(body); // if no errors, send the body of data back to front end
+    }else{
+      res.send(error);
     }
    });
 });
