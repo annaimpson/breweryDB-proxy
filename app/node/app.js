@@ -23,7 +23,8 @@ app.get('/breweries', function(req, res){ // listens for request on /api route
     if (!error && response.statusCode === 200) {
       res.send(body); // if no errors, send the body of data back to front end
     }else{
-      res.send(error);
+      console.log(error);
+      res.send(response);
     }
    });
 });
