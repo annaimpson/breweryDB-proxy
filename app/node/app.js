@@ -15,11 +15,18 @@ app.use(cors()); //allows overriding cross origin policy (use npm install if nee
 //     }
 //    });
 // });
-
+//p is the query param for pagination
 app.get('/breweries', function(req, res){ // listens for request on /api route
   var lat = req.query.lat; // grabs lat and lng queries from the request object
   var lng = req.query.lng;
-  request('http://api.brewerydb.com/v2/breweries/?key=9b561e70ba317f8d99aaa277053fe0fd&name=*', function (error, response, body) { // api url
+  var p;
+  if(req.query.p){
+    p = req.query.p
+  }else{
+    p = 1;
+  }
+
+  request('http://api.brewerydb.com/v2/breweries/?key=9b561e70ba317f8d99aaa277053fe0fd&p=' + p + '&name=*', function (error, response, body) { // api url
     if (!error && response.statusCode === 200) {
       res.send(body); // if no errors, send the body of data back to front end
     }else{
