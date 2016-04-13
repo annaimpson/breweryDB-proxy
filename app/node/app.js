@@ -33,8 +33,8 @@ app.get('/breweries', function(req, res){ // listens for request on /breweries r
    });
 });
 
-app.get('/brewery/:breweryId/beers', function(req, res){ // listens for request on /breweries route
-  request('http://api.brewerydb.com/v2/brewery/' + req.params.breweryId + '?key=9b561e70ba317f8d99aaa277053fe0fd' + '&withBreweries=Y', function (error, response, body) { // api url
+app.get('/brewery/:breweryId', function(req, res){ // listens for request on /breweries route
+  request('http://api.brewerydb.com/v2/brewery/' + req.params.breweryId + '?key=9b561e70ba317f8d99aaa277053fe0fd', function (error, response, body) { // api url
     if (!error && response.statusCode === 200) {
       res.send(body); // if no errors, send the body of data back to front end
     }else{
@@ -43,6 +43,7 @@ app.get('/brewery/:breweryId/beers', function(req, res){ // listens for request 
     }
    });
 });
+
 
 
 app.get('/search', function(req, res){ // listens for request on /search route
